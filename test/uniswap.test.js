@@ -12,31 +12,31 @@ const ACCOUNT = "0x0Adc81a8371c6719CdF3d20995ef1a0C2Bd4AB03";
 
 // Traditional Truffle test
 contract("Router", () => {
-  let uniRouter;
+	let uniRouter;
 
-  before(async function () {
-    uniRouter = await IUniswapV2Router.at(UNI_ROUTER);
+	before(async function () {
+		uniRouter = await IUniswapV2Router.at(UNI_ROUTER);
 
-    // Unlock account in forked mainnet
-    await hre.network.provider.request({
-      method: "hardhat_impersonateAccount",
-      params: [ACCOUNT],
-    });
-  });
+		// Unlock account in forked mainnet
+		await hre.network.provider.request({
+			method: "hardhat_impersonateAccount",
+			params: [ACCOUNT],
+		});
+	});
 
-  it("Should swap ETH for DAI", async function () {
-    const timestamp = await time.latest();
-    const tx = await uniRouter.swapETHForExactTokens(
-      web3.utils.toWei("100"),
-      [WETH_ADDRESS, DAI_ADDRESS],
-      ACCOUNT,
-      timestamp + 3600,
-      { from: ACCOUNT, value: web3.utils.toWei("0.1") }
-    );
-    console.log("Gas Used:", tx.receipt.gasUsed);
+	it("Should swap ETH for DAI", async function () {
+		const timestamp = await time.latest();
+		const tx = await uniRouter.swapETHForExactTokens(
+			web3.utils.toWei("100"),
+			[WETH_ADDRESS, DAI_ADDRESS],
+			ACCOUNT,
+			timestamp + 3600,
+			{ from: ACCOUNT, value: web3.utils.toWei("0.1") }
+		);
+		console.log("Gas Used:", tx.receipt.gasUsed);
 
-    const daiToken = await IERC20.at(DAI_ADDRESS);
-    const balance = await daiToken.balanceOf(ACCOUNT);
-    console.log("Dai Balance:", Number(web3.utils.fromWei(balance)));
-  });
+		const daiToken = await IERC20.at(DAI_ADDRESS);
+		const balance = await daiToken.balanceOf(ACCOUNT);
+		console.log("Dai Balance:", Number(web3.utils.fromWei(balance)));
+	});
 });

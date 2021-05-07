@@ -1,37 +1,28 @@
-# Truffle Hardhat
+# TODO:
 
-Hardhat integration to truffle project
+## Get token addres
 
-## Dependencies
+- [API tokens](https://api.1inch.exchange/v3.0/1/tokens)
 
-Install dependencies with `npm install` or `yarn`
+## select token(s)
 
-## Compiling
 
-```
-npm run compile
-yarn compile
-```
 
-## Testing
+## get best Dex
 
-```
-npm run test
-yarn test
-```
+- [search options](https://api.1inch.exchange/v3.0/1/protocols)
+- [quote](https://docs.1inch.io/api/quote-swap)
 
-## Deploying
+## call method
 
-```
-npm run deploy
-yarn deploy
-```
+- [Select method](https://github.com/1inch/1inchProtocol/tree/master/contracts)
 
-## Useful Links
+## make contract multi token
 
-- [Hardat Tutorial](https://hardhat.org/tutorial/)
-- [Hardat Truffle Plugin](https://github.com/nomiclabs/hardhat/tree/master/packages/hardhat-truffle5)
-- [Testing with Truffle](https://hardhat.org/guides/truffle-testing.html#testing-with-web3-js-truffle)
-- [Verifying contracts on etherscan](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan)
-- [Get Alchemy Key](https://www.alchemyapi.io/)
-- [Get Etherscan key](https://etherscan.io/register)
+## make upgradable
+
+- [yisus](https://hardhat.org/plugins/hardhat-upgrades.html)
+
+## gas testing 
+
+- [gas](https://www.npmjs.com/package/eth-gas-reporter)
