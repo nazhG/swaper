@@ -1,0 +1,59 @@
+{
+  "manifestVersion": "3.2",
+  "impls": {
+    "19f505416bd5abd857f45f1baf7853cdaf355e782173487f3f2b63d4def2c721": {
+      "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+      "txHash": "0x55b2af72baaf57d706daf08edf781498a30d4fd508dff396a4bdfbb37e860a0c",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:23"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:28"
+          },
+          {
+            "contract": "Swapper",
+            "label": "uniswap",
+            "type": "t_contract(IUniswapV2Router)615",
+            "src": "contracts\\Swapper.sol:10"
+          },
+          {
+            "contract": "Swapper",
+            "label": "recipient",
+            "type": "t_address_payable",
+            "src": "contracts\\Swapper.sol:14"
+          }
+        ],
+        "types": {
+          "t_contract(IUniswapV2Router)615": {
+            "label": "contract IUniswapV2Router"
+          },
+          "t_address_payable": {
+            "label": "address payable"
+          },
+          "t_bool": {
+            "label": "bool"
+          }
+        }
+      }
+    }
+  },
+  "proxies": [
+    {
+      "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+      "kind": "transparent",
+      "txHash": "0x9ffb9b03c7bf9866cc17aa078ccf117a4f683774ae8bff827145f92e99b33295"
+    }
+  ],
+  "admin": {
+    "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+    "txHash": "0x0a4dddc11de7c6ab358859ccb3f4fa4f5e88d8a0e597357153416a367d65b44a"
+  }
+}

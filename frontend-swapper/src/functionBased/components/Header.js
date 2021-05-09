@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header style={headerStyle}>
-      <h1 style={{ fontSize: "6rem", fontWeight: "600", marginBottom: "2rem", lineHeight: "1em", color: "#999", textTransform: "lowercase", textAlign: "center" }}>~<i>Swapper</i>~</h1>
+      <h1 style={{ fontSize: "6rem", fontWeight: "600", marginBottom: "2rem", lineHeight: "1em", color: "#999", textTransform: "lowercase", textAlign: "center" }}>~ <i>Swapper </i>~</h1>
     </header>
   )
 }
