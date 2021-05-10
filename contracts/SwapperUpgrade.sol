@@ -4,11 +4,13 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+// UNISWAP
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+// second Dex
 
 import "hardhat/console.sol";
 
-contract Swapper is Initializable, OwnableUpgradeable {
+contract SwapperUpgrade is Initializable, OwnableUpgradeable {
     IUniswapV2Router02 internal uniswap;
     address payable recipient;
 
@@ -25,23 +27,7 @@ contract Swapper is Initializable, OwnableUpgradeable {
         _;
     }
 
-    function swapOne(address token) public payable needEther {
-        address[] memory path = new address[](2);
-        path[0] = uniswap.WETH();
-        path[1] = token;
-        uint256 fee = msg.value / 1000;
-
-        uniswap.swapExactETHForTokens{value: msg.value - msg.value / 1000}(
-            msg.value - fee,
-            path,
-            msg.sender,
-            block.timestamp + 3600
-        );
-
-        recipient.transfer(fee);
-    }
-
-    function swapMany(address[] memory tokens, uint8[] memory value)
+    function swapManyByUniswap(address[] memory tokens, uint8[] memory value)
         public
         payable
         needEther
