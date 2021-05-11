@@ -1,9 +1,9 @@
 {
   "manifestVersion": "3.2",
   "impls": {
-    "daf3dc65ae96a8a48c8550a03873f8f65199fa0c1320d265499eba0bbd56a7bb": {
+    "0ad18e16ce1164867ac253d776a6164f7f76d33dc524bcdfb41eb2b564d16e1b": {
       "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-      "txHash": "0x7fb5b624839d5baa993fc7adf63ffdac742324421745eb902600532bb66227df",
+      "txHash": "0x44a8d02fccff6ad07ddd4be1749ee4e4ad056efa1d43a221c259138300a0ba7c",
       "layout": {
         "storage": [
           {
@@ -39,18 +39,24 @@
           {
             "contract": "Swapper",
             "label": "uniswap",
-            "type": "t_contract(IUniswapV2Router02)695",
-            "src": "contracts\\Swapper.sol:12"
+            "type": "t_contract(IUniswapV2Router02)1250",
+            "src": "contracts\\Swapper.sol:13"
           },
           {
             "contract": "Swapper",
             "label": "recipient",
             "type": "t_address_payable",
-            "src": "contracts\\Swapper.sol:13"
+            "src": "contracts\\Swapper.sol:14"
+          },
+          {
+            "contract": "Swapper",
+            "label": "_weth",
+            "type": "t_address",
+            "src": "contracts\\Swapper.sol:15"
           }
         ],
         "types": {
-          "t_contract(IUniswapV2Router02)695": {
+          "t_contract(IUniswapV2Router02)1250": {
             "label": "contract IUniswapV2Router02"
           },
           "t_address_payable": {
@@ -74,9 +80,9 @@
         }
       }
     },
-    "26f60be0b70b400555525813c96c0d5d916377cc9a5447c534d6b803dc18eeb4": {
-      "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
-      "txHash": "0x749aa213f7f10de3b3b7e9b3817ab5c6920d1fc18ca5f63989739fb2bb372da7",
+    "f9133ac90ca3195bc6a0dd423dc2793f1fe1b8d0fb40d36d7b609f2c7958b612": {
+      "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+      "txHash": "0xd9953088fe3811c56f4b476ebe1da694a93eae6223f677e39a6e169b3c04768a",
       "layout": {
         "storage": [
           {
@@ -112,30 +118,30 @@
           {
             "contract": "SwapperUpgrade",
             "label": "uniswap",
-            "type": "t_contract(IUniswapV2Router02)695",
-            "src": "contracts\\SwapperUpgrade.sol:16"
+            "type": "t_contract(IUniswapV2Router02)1250",
+            "src": "contracts\\SwapperUpgrade.sol:14"
           },
           {
             "contract": "SwapperUpgrade",
             "label": "recipient",
             "type": "t_address_payable",
-            "src": "contracts\\SwapperUpgrade.sol:17"
+            "src": "contracts\\SwapperUpgrade.sol:15"
           },
           {
             "contract": "SwapperUpgrade",
             "label": "_weth",
             "type": "t_address",
-            "src": "contracts\\SwapperUpgrade.sol:18"
+            "src": "contracts\\SwapperUpgrade.sol:16"
           },
           {
             "contract": "SwapperUpgrade",
-            "label": "bPool",
-            "type": "t_contract(IBPool)724",
-            "src": "contracts\\SwapperUpgrade.sol:19"
+            "label": "balancer",
+            "type": "t_contract(ExchangeProxy)2068",
+            "src": "contracts\\SwapperUpgrade.sol:17"
           }
         ],
         "types": {
-          "t_contract(IUniswapV2Router02)695": {
+          "t_contract(IUniswapV2Router02)1250": {
             "label": "contract IUniswapV2Router02"
           },
           "t_address_payable": {
@@ -144,8 +150,8 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(IBPool)724": {
-            "label": "contract IBPool"
+          "t_contract(ExchangeProxy)2068": {
+            "label": "contract ExchangeProxy"
           },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]"
@@ -165,14 +171,14 @@
   },
   "proxies": [
     {
-      "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
-      "kind": "transparent",
-      "txHash": "0x45d6211c7407555e8c0a503256cd154084268e7d0e0dcd20e2e9431a5d032f3f"
-    },
-    {
       "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
       "kind": "transparent",
       "txHash": "0x019da2a88b2d478c76159de27d2b6e94cd9395d84ff48934655579ab0c8d9ff9"
+    },
+    {
+      "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+      "kind": "transparent",
+      "txHash": "0xb09ba93a01f96066849d99abd6d590fe5534be4c830ce188068641816536e2cb"
     }
   ],
   "admin": {

@@ -1,11 +1,13 @@
 const { web3 } = require('@openzeppelin/test-helpers/src/setup');
 const { ethers, upgrades } = require("hardhat");
 
-const IERC20 = artifacts.require("IERC20");
-const Roter02 = artifacts.require("IUniswapV2Router02");
-const IBPool = artifacts.require("IBPool");
+const ERC20 = artifacts.require("ERC20");
 
-const Bpool = "0xA3F9145CB0B50D907930840BB2dcfF4146df8Ab4";
+const IBPool = artifacts.require("IBPool");
+const Roter02 = artifacts.require("IUniswapV2Router02");
+const ExchangeProxy = artifacts.require("ExchangeProxy");
+
+const Balancer = "0x3E66B66Fd1d0b02fDa6C811Da9E0547970DB2f21";
 const Uniswap = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
 const WETH = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 
@@ -16,14 +18,14 @@ const USDT = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
 
 describe("V2", () => {
 	let swapper;
-	let bpool;
+	let balancer;
 	let amountToBuy;
 
-	let user;
+	let owner;
 	let recipient;
 
 	before(async () => {
-		[user, recipient] = await ethers.getSigners();
+		[owner, recipient] = await ethers.getSigners();
 
 		const Swapper = await ethers.getContractFactory("Swapper");
 		swapper = await upgrades.deployProxy(Swapper, [recipient.address, Uniswap]);
@@ -33,26 +35,29 @@ describe("V2", () => {
 		swapper = await upgrades.upgradeProxy(swapper.address, SwapperUpgrade);
 		console.log("upgraded =>", swapper.address);
 
+		swapper.setBalancer(Balancer); //v2
+
 		uniswap = await Roter02.at(Uniswap);
-		balancer = await IBPool.at(Bpool);
+		balancer = await ExchangeProxy.at(Balancer);
 	});
 
 	describe("Balancer", () => {
 
 		it("Swap", async () => {
 			let etherAmount = "1";
-			let toToken = DAI;
-			const dai = await IERC20.at(DAI);
+			let accountBalance = [];
 
-			let prevBalanceudai = await dai.balanceOf(user.address);
+			const tokenAddrss = DAI;
+			const token = await ERC20.at(tokenAddrss);
 
-			await swapper.connect(user).swapOneByBalancer(web3.utils.toWei(etherAmount), toToken, { value: web3.utils.toWei(etherAmount) });
+			accountBalance.push(Number(await token.balanceOf(owner.address)));
+			// console.log([await swapper.owner()]);
+			totalOutput = await swapper.connect(owner).swapOneByBalancer(tokenAddrss, { value: web3.utils.toWei(String(etherAmount)) });
+			console.log(totalOutput);
 
-			let postBalanceudai = await dai.balanceOf(user.address);
-			console.log('DAI  Balance previo: ', (prevBalanceudai).toString(), 'Balance posterior: ', (postBalanceudai).toString())
-			assert(
-				Number(prevBalanceudai) < Number(postBalanceudai)
-			);
+			accountBalance.push(Number(await token.balanceOf(owner.address)));
+			console.table(accountBalance)
+			// assert(Number(accountBalance[0]) < Number(accountBalance[1]));
 		})
 
 	})

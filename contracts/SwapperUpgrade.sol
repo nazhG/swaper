@@ -2,31 +2,22 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-// UNISWAP
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
-// second Dex
-import "./IBPool.sol";
-import "./IWeth.sol";
+import "./interfaces/Balancer.sol";
 
 import "hardhat/console.sol";
 
 contract SwapperUpgrade is Initializable, OwnableUpgradeable {
     IUniswapV2Router02 internal uniswap;
-    address payable recipient;
-    address _weth;
-    IBPool bPool;
+    address payable private recipient;
+    address internal _weth;
+    ExchangeProxy internal balancer;
 
-    function initialize(
-        address payable _recipient,
-        address _uniswap,
-        address _bPool
-    ) public initializer {
-        uniswap = IUniswapV2Router02(_uniswap);
-        recipient = _recipient;
-        bPool = IBPool(_bPool);
-        _weth = uniswap.WETH();
+    function setBalancer(address _balancer) public onlyOwner {
+        balancer = ExchangeProxy(_balancer);
     }
 
     modifier needEther() {
@@ -73,20 +64,28 @@ contract SwapperUpgrade is Initializable, OwnableUpgradeable {
         console.log("Gas used: ", startGas - gasleft());
     }
 
-    function swapOneByBalancer(uint256 value, address _token) external payable {
-        // IERC20 token = IERC20(_token);
-        IWeth weth = IWeth(_weth);
-        weth.deposit{value: msg.value}();
-        uint256 price = (110 * bPool.getSpotPrice(_weth, _token)) / 100;
-        uint256 wethAmount = price * value;
-        weth.approve(address(bPool), wethAmount);
-        bPool.swapExactAmountOut(_weth, wethAmount, _token, value, price);
-
-        payable(_token).transfer(value);
-        payable(msg.sender).transfer(address(this).balance);
+    struct Swap {
+        address pool;
+        address tokenIn;
+        address tokenOut;
+        uint256 swapAmount; // tokenInAmount / tokenOutAmount
+        uint256 limitReturnAmount; // minAmountOut / maxAmountIn
+        uint256 maxPrice;
     }
 
-    function getSpotPrice(address _token) external view returns (uint256) {
-        return bPool.getSpotPrice(_weth, _token);
+    function swapOneByBalancer(address _token) external payable {
+        uint256 remaining = msg.value - (msg.value / 1000);
+        recipient.transfer(msg.value / 1000);
+
+        // TokenInterface weth = TokenInterface(_weth);
+        // TokenInterface toToken = TokenInterface(_token);
+
+        // weth.deposit{value: remaining}();
+        // weth.approve(address(balancer), remaining);
+
+        (Swap[] memory swaps, uint256 totalOutput) =
+            balancer.viewSplitExactIn(_weth, _token, remaining, 1);
+        // console.log(swaps);
+        console.log(totalOutput);
     }
 }

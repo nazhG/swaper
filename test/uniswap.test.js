@@ -45,7 +45,7 @@ describe("LET SWAPPING BABY !!!\nV1", () => {
 
 			let prevBalance = await albt.balanceOf(user.address);
 			let prevBalanceRecipient = await recipient.getBalance();
-			await swapper.connect(user).swapOne(ALBT, { value: web3.utils.toWei(etherAmount) });
+			await swapper.connect(user).swapOneByUniswap(ALBT, { value: web3.utils.toWei(etherAmount) });
 
 			let postBalance = await albt.balanceOf(user.address);
 			let postBalanceRecipient = await recipient.getBalance();
@@ -71,7 +71,7 @@ describe("LET SWAPPING BABY !!!\nV1", () => {
 			let prevBalanceudai = await dai.balanceOf(user.address);
 			let prevBalanceusdt = await usdt.balanceOf(user.address);
 
-			await swapper.connect(user).swapMany(toToken, porcToken, { value: web3.utils.toWei(etherAmount) });
+			await swapper.connect(user).swapManyByUniswap(toToken, porcToken, { value: web3.utils.toWei(etherAmount) });
 			let postBalanceusdc = await usdc.balanceOf(user.address);
 			let postBalanceudai = await dai.balanceOf(user.address);
 			let postBalanceusdt = await usdt.balanceOf(user.address);
