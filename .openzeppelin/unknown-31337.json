@@ -80,9 +80,9 @@
         }
       }
     },
-    "eea7513b397a322ff08b3d952260eb79b84acef778f2a6968bdfde1845f3ecc4": {
+    "114a6c5f2d252671e1c8aa0eb58365421d1703f8a7af01632a0d4ec02b1a2bb1": {
       "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
-      "txHash": "0x219a79d853f5583bd3467a5c1fbae3ac4c74becef45c1f2d98074d3e3ead2341",
+      "txHash": "0x2152c0ab7a15663f4676c04465a6878f69ec48984e40b7870ca4b37a82b603cb",
       "layout": {
         "storage": [
           {
@@ -136,7 +136,7 @@
           {
             "contract": "SwapperUpgrade",
             "label": "balancer",
-            "type": "t_contract(ExchangeProxy)2264",
+            "type": "t_contract(ExchangeProxy)2151",
             "src": "contracts\\SwapperUpgrade.sol:17"
           }
         ],
@@ -150,95 +150,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(ExchangeProxy)2264": {
-            "label": "contract ExchangeProxy"
-          },
-          "t_array(t_uint256)49_storage": {
-            "label": "uint256[49]"
-          },
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_array(t_uint256)50_storage": {
-            "label": "uint256[50]"
-          },
-          "t_bool": {
-            "label": "bool"
-          }
-        }
-      }
-    },
-    "2f22a0795836a2ae7faf73e02d43e96587839dd25875c089377cd69705cb35ad": {
-      "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
-      "txHash": "0xc177b9547de5fe5c837943452371cc1168d9462b6e1fecf6f7701c9529780351",
-      "layout": {
-        "storage": [
-          {
-            "contract": "Initializable",
-            "label": "_initialized",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:23"
-          },
-          {
-            "contract": "Initializable",
-            "label": "_initializing",
-            "type": "t_bool",
-            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:28"
-          },
-          {
-            "contract": "ContextUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)50_storage",
-            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:31"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "_owner",
-            "type": "t_address",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:20"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)49_storage",
-            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:74"
-          },
-          {
-            "contract": "SwapperUpgrade",
-            "label": "uniswap",
-            "type": "t_contract(IUniswapV2Router02)1250",
-            "src": "contracts\\SwapperUpgrade.sol:14"
-          },
-          {
-            "contract": "SwapperUpgrade",
-            "label": "recipient",
-            "type": "t_address_payable",
-            "src": "contracts\\SwapperUpgrade.sol:15"
-          },
-          {
-            "contract": "SwapperUpgrade",
-            "label": "_weth",
-            "type": "t_address",
-            "src": "contracts\\SwapperUpgrade.sol:16"
-          },
-          {
-            "contract": "SwapperUpgrade",
-            "label": "balancer",
-            "type": "t_contract(ExchangeProxy)2270",
-            "src": "contracts\\SwapperUpgrade.sol:17"
-          }
-        ],
-        "types": {
-          "t_contract(IUniswapV2Router02)1250": {
-            "label": "contract IUniswapV2Router02"
-          },
-          "t_address_payable": {
-            "label": "address payable"
-          },
-          "t_address": {
-            "label": "address"
-          },
-          "t_contract(ExchangeProxy)2270": {
+          "t_contract(ExchangeProxy)2151": {
             "label": "contract ExchangeProxy"
           },
           "t_array(t_uint256)49_storage": {
@@ -259,14 +171,14 @@
   },
   "proxies": [
     {
-      "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
-      "kind": "transparent",
-      "txHash": "0x8710205ff4ee11eaa97fcfbba182942f07ab09b8990c8aaaa71ac1d2bbf4094c"
-    },
-    {
       "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
       "kind": "transparent",
       "txHash": "0xb09ba93a01f96066849d99abd6d590fe5534be4c830ce188068641816536e2cb"
+    },
+    {
+      "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
+      "kind": "transparent",
+      "txHash": "0x8710205ff4ee11eaa97fcfbba182942f07ab09b8990c8aaaa71ac1d2bbf4094c"
     }
   ],
   "admin": {

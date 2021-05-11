@@ -75,7 +75,7 @@ contract SwapperUpgrade is Initializable, OwnableUpgradeable {
         TokenInterface weth = TokenInterface(_weth);
 
         for (uint256 i = 0; i < tokens.length; i++) {
-            uint256 percent = (remaining * value[i]) / 100;
+            uint256 percent = (remaining * value[i]) / 1000;
 
             TokenInterface itoken = TokenInterface(tokens[i]);
             weth.deposit{value: percent}();
@@ -94,29 +94,29 @@ contract SwapperUpgrade is Initializable, OwnableUpgradeable {
         }
     }
 
-    function bestDex(address token, uint256 value) public payable {
-        address[] memory path = new address[](2);
-        path[0] = address(_weth);
-        path[1] = token;
-        RegistryInterface balancerRegistry =
-            RegistryInterface(0x7226DaaF09B3972320Db05f5aB81FF38417Dd687);
+    // function bestDex(address token, uint256 value) public payable {
+    //     address[] memory path = new address[](2);
+    //     path[0] = address(_weth);
+    //     path[1] = token;
+    //     RegistryInterface balancerRegistry =
+    //         RegistryInterface(0x7226DaaF09B3972320Db05f5aB81FF38417Dd687);
 
-        address[] memory best_pool =
-            balancerRegistry.getBestPoolsWithLimit(
-                path[0],
-                path[1],
-                uint256(1)
-            );
+    //     address[] memory best_pool =
+    //         balancerRegistry.getBestPoolsWithLimit(
+    //             path[0],
+    //             path[1],
+    //             uint256(1)
+    //         );
 
-        Bpool ipool = Bpool(best_pool[0]);
-        uint256 amountOutUniswap =
-            uniswap.getAmountsOut(value, path)[1] / value;
+    //     Bpool ipool = Bpool(best_pool[0]);
+    //     uint256 amountOutUniswap =
+    //         uniswap.getAmountsOut(value, path)[1] / value;
 
-        uint256 TokenPrice = ipool.getSpotPrice(path[0], path[1]);
-        uint256 amountOutBalancer = value / TokenPrice;
+    //     uint256 TokenPrice = ipool.getSpotPrice(path[0], path[1]);
+    //     uint256 amountOutBalancer = value / TokenPrice;
 
-        console.log("~ DEX options ~");
-        console.log("Uniswap: ", amountOutUniswap);
-        console.log("Balancer: ", amountOutBalancer);
-    }
+    //     console.log("~ DEX options ~");
+    //     console.log("Uniswap: ", amountOutUniswap);
+    //     console.log("Balancer: ", amountOutBalancer);
+    // }
 }

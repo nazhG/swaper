@@ -73,12 +73,12 @@ describe("V2", () => {
 		// 	assert(Number(prevBalanceDai) < Number(postBalanceDai) && Number(prevBalanceAlbt) < Number(postBalanceAlbt));
 		// })
 
-		it("Get best DEX", async () => {
-			let etherAmount = "1";
+		// it("Get best DEX", async () => {
+		// 	let etherAmount = "1";
 
-			let tx = await swapper.bestDex(USDT, web3.utils.toWei(String(etherAmount)));
+		// 	let tx = await swapper.bestDex(USDT, web3.utils.toWei(String(etherAmount)));
 
-		})
+		// })
 
 	})
 
