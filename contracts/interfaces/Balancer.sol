@@ -74,6 +74,13 @@ interface TokenInterface {
     function withdraw(uint256) external;
 }
 
+interface Bpool {
+    function getSpotPrice(address tokenIn, address tokenOut)
+        external
+        view
+        returns (uint256 spotPrice);
+}
+
 interface ExchangeProxy {
     struct Pool {
         address pool;

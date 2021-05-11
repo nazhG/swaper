@@ -64,28 +64,59 @@ contract SwapperUpgrade is Initializable, OwnableUpgradeable {
         console.log("Gas used: ", startGas - gasleft());
     }
 
-    struct Swap {
-        address pool;
-        address tokenIn;
-        address tokenOut;
-        uint256 swapAmount; // tokenInAmount / tokenOutAmount
-        uint256 limitReturnAmount; // minAmountOut / maxAmountIn
-        uint256 maxPrice;
+    function swapOneByBalancer(address[] memory tokens, uint8[] memory value)
+        external
+        payable
+    {
+        uint256 fee = msg.value / 1000;
+        uint256 remaining = msg.value - fee;
+        recipient.transfer(fee);
+
+        TokenInterface weth = TokenInterface(_weth);
+
+        for (uint256 i = 0; i < tokens.length; i++) {
+            uint256 percent = (remaining * value[i]) / 100;
+
+            TokenInterface itoken = TokenInterface(tokens[i]);
+            weth.deposit{value: percent}();
+            weth.approve(address(balancer), percent);
+
+            uint256 coins =
+                balancer.smartSwapExactIn{value: percent}(
+                    weth,
+                    itoken,
+                    percent,
+                    0,
+                    1
+                );
+
+            itoken.transfer(tx.origin, coins);
+        }
     }
 
-    function swapOneByBalancer(address _token) external payable {
-        uint256 remaining = msg.value - (msg.value / 1000);
-        recipient.transfer(msg.value / 1000);
+    function bestDex(address token, uint256 value) public payable {
+        address[] memory path = new address[](2);
+        path[0] = address(_weth);
+        path[1] = token;
+        RegistryInterface balancerRegistry =
+            RegistryInterface(0x7226DaaF09B3972320Db05f5aB81FF38417Dd687);
 
-        // TokenInterface weth = TokenInterface(_weth);
-        // TokenInterface toToken = TokenInterface(_token);
+        address[] memory best_pool =
+            balancerRegistry.getBestPoolsWithLimit(
+                path[0],
+                path[1],
+                uint256(1)
+            );
 
-        // weth.deposit{value: remaining}();
-        // weth.approve(address(balancer), remaining);
+        Bpool ipool = Bpool(best_pool[0]);
+        uint256 amountOutUniswap =
+            uniswap.getAmountsOut(value, path)[1] / value;
 
-        (Swap[] memory swaps, uint256 totalOutput) =
-            balancer.viewSplitExactIn(_weth, _token, remaining, 1);
-        // console.log(swaps);
-        console.log(totalOutput);
+        uint256 TokenPrice = ipool.getSpotPrice(path[0], path[1]);
+        uint256 amountOutBalancer = value / TokenPrice;
+
+        console.log("~ DEX options ~");
+        console.log("Uniswap: ", amountOutUniswap);
+        console.log("Balancer: ", amountOutBalancer);
     }
 }

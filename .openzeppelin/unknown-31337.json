@@ -80,9 +80,9 @@
         }
       }
     },
-    "f9133ac90ca3195bc6a0dd423dc2793f1fe1b8d0fb40d36d7b609f2c7958b612": {
-      "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
-      "txHash": "0xd9953088fe3811c56f4b476ebe1da694a93eae6223f677e39a6e169b3c04768a",
+    "eea7513b397a322ff08b3d952260eb79b84acef778f2a6968bdfde1845f3ecc4": {
+      "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
+      "txHash": "0x219a79d853f5583bd3467a5c1fbae3ac4c74becef45c1f2d98074d3e3ead2341",
       "layout": {
         "storage": [
           {
@@ -136,7 +136,7 @@
           {
             "contract": "SwapperUpgrade",
             "label": "balancer",
-            "type": "t_contract(ExchangeProxy)2068",
+            "type": "t_contract(ExchangeProxy)2264",
             "src": "contracts\\SwapperUpgrade.sol:17"
           }
         ],
@@ -150,7 +150,7 @@
           "t_address": {
             "label": "address"
           },
-          "t_contract(ExchangeProxy)2068": {
+          "t_contract(ExchangeProxy)2264": {
             "label": "contract ExchangeProxy"
           },
           "t_array(t_uint256)49_storage": {
@@ -171,14 +171,14 @@
   },
   "proxies": [
     {
-      "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
-      "kind": "transparent",
-      "txHash": "0x019da2a88b2d478c76159de27d2b6e94cd9395d84ff48934655579ab0c8d9ff9"
-    },
-    {
       "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
       "kind": "transparent",
       "txHash": "0xb09ba93a01f96066849d99abd6d590fe5534be4c830ce188068641816536e2cb"
+    },
+    {
+      "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
+      "kind": "transparent",
+      "txHash": "0x8710205ff4ee11eaa97fcfbba182942f07ab09b8990c8aaaa71ac1d2bbf4094c"
     }
   ],
   "admin": {

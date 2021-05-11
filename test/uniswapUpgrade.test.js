@@ -43,22 +43,43 @@ describe("V2", () => {
 
 	describe("Balancer", () => {
 
-		it("Swap", async () => {
+		// it("Swap One", async () => {
+		// 	let etherAmount = "1";
+
+		// 	const dai = await ERC20.at(DAI);
+
+		// 	let prevBalanceDai = await dai.balanceOf(owner.address);
+		// 	let tx = await swapper.connect(owner).swapOneByBalancer([DAI], [100], { value: web3.utils.toWei(String(etherAmount)) });
+		// 	let postBalanceDai = await dai.balanceOf(owner.address);
+		// 	console.log('DAI Balance previo: ', (prevBalanceDai).toString(), 'Balance posterior: ', (postBalanceDai).toString())
+
+		// 	assert(Number(prevBalanceDai) < Number(postBalanceDai));
+		// })
+
+		// it("Swap Multiple", async () => {
+		// 	let etherAmount = "1";
+
+		// 	const dai = await ERC20.at(DAI);
+		// 	const albt = await ERC20.at(ALBT);
+
+		// 	let prevBalanceDai = await dai.balanceOf(owner.address);
+		// 	let prevBalanceAlbt = await albt.balanceOf(owner.address);
+		// 	let tx = await swapper.connect(owner).swapOneByBalancer([DAI, ALBT], [60, 40], { value: web3.utils.toWei(String(etherAmount)) });
+		// 	let postBalanceDai = await dai.balanceOf(owner.address);
+		// 	let postBalanceAlbt = await albt.balanceOf(owner.address);
+		// 	console.log('DAI Balance previo: ', (prevBalanceDai).toString(), 'Balance posterior: ', (postBalanceDai).toString())
+		// 	console.log('ALBT Balance previo: ', (prevBalanceAlbt).toString(), 'Balance posterior: ', (postBalanceAlbt).toString())
+
+		// 	assert(Number(prevBalanceDai) < Number(postBalanceDai) && Number(prevBalanceAlbt) < Number(postBalanceAlbt));
+		// })
+
+		it("Get best DEX", async () => {
 			let etherAmount = "1";
-			let accountBalance = [];
 
-			const tokenAddrss = DAI;
-			const token = await ERC20.at(tokenAddrss);
+			let tx = await swapper.bestDex(USDT, web3.utils.toWei(String(etherAmount)));
 
-			accountBalance.push(Number(await token.balanceOf(owner.address)));
-			// console.log([await swapper.owner()]);
-			totalOutput = await swapper.connect(owner).swapOneByBalancer(tokenAddrss, { value: web3.utils.toWei(String(etherAmount)) });
-			console.log(totalOutput);
-
-			accountBalance.push(Number(await token.balanceOf(owner.address)));
-			console.table(accountBalance)
-			// assert(Number(accountBalance[0]) < Number(accountBalance[1]));
 		})
 
 	})
+
 });
