@@ -43,18 +43,18 @@ describe("V2", () => {
 
 	describe("Balancer", () => {
 
-		// it("Swap One", async () => {
-		// 	let etherAmount = "1";
+		it("Swap One", async () => {
+			let etherAmount = "1";
 
-		// 	const dai = await ERC20.at(DAI);
+			const dai = await ERC20.at(DAI);
 
-		// 	let prevBalanceDai = await dai.balanceOf(owner.address);
-		// 	let tx = await swapper.connect(owner).swapOneByBalancer([DAI], [100], { value: web3.utils.toWei(String(etherAmount)) });
-		// 	let postBalanceDai = await dai.balanceOf(owner.address);
-		// 	console.log('DAI Balance previo: ', (prevBalanceDai).toString(), 'Balance posterior: ', (postBalanceDai).toString())
+			let prevBalanceDai = await dai.balanceOf(owner.address);
+			let tx = await swapper.connect(owner).swapOneByBalancer([DAI], [100], { value: web3.utils.toWei(String(etherAmount)) });
+			let postBalanceDai = await dai.balanceOf(owner.address);
+			console.log('DAI Balance previo: ', (prevBalanceDai).toString(), 'Balance posterior: ', (postBalanceDai).toString())
 
-		// 	assert(Number(prevBalanceDai) < Number(postBalanceDai));
-		// })
+			assert(Number(prevBalanceDai) < Number(postBalanceDai));
+		})
 
 		// it("Swap Multiple", async () => {
 		// 	let etherAmount = "1";
